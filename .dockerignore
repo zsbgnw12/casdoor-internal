@@ -1,6 +1,5 @@
 web/node_modules/
 web/build/
-.git/
 .github/
 .idea/
 .vscode/
