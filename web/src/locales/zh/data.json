@@ -757,6 +757,11 @@
   },
   "login": {
     "Auto sign in": "下次自动登录",
+    "Customer login": "客户编号登录",
+    "Customer ID": "客户编号",
+    "Customer login is not available yet": "客户编号登录暂未开放",
+    "Internal login": "内部人员登录",
+    "Please input your customer ID!": "请输入客户编号！",
     "Back button": "返回按钮",
     "Click the button below to sign in with Telegram": "点击下方按钮使用Telegram登录",
     "Continue with": "使用以下账号继续",

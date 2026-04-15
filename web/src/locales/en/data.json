@@ -757,6 +757,11 @@
   },
   "login": {
     "Auto sign in": "Auto sign in",
+    "Customer login": "Customer Login",
+    "Customer ID": "Customer ID",
+    "Customer login is not available yet": "Customer login is not available yet",
+    "Internal login": "Internal Login",
+    "Please input your customer ID!": "Please input your customer ID!",
     "Back button": "Back button",
     "Click the button below to sign in with Telegram": "Click the button below to sign in with Telegram",
     "Continue with": "Continue with",

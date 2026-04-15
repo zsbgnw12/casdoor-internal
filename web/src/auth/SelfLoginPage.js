@@ -13,17 +13,44 @@
 // limitations under the License.
 
 import React from "react";
+import {Tabs} from "antd";
+import i18next from "i18next";
 import LoginPage from "./LoginPage";
+import CustomerLoginPage from "./CustomerLoginPage";
 import {authConfig} from "./Auth";
 
 class SelfLoginPage extends React.Component {
   constructor(props) {
     super(props);
     import("../ManagementPage");
+    this.state = {activeTab: "customer"};
   }
+
   render() {
+    const items = [
+      {
+        key: "customer",
+        label: i18next.t("login:Customer login"),
+        children: <CustomerLoginPage />,
+      },
+      {
+        key: "internal",
+        label: i18next.t("login:Internal login"),
+        children: (
+          <LoginPage type={"login"} mode={"signin"} applicationName={authConfig.appName} {...this.props} />
+        ),
+      },
+    ];
+
     return (
-      <LoginPage type={"login"} mode={"signin"} applicationName={authConfig.appName} {...this.props} />
+      <div style={{maxWidth: "480px", margin: "0 auto", padding: "24px"}}>
+        <Tabs
+          centered
+          activeKey={this.state.activeTab}
+          onChange={(key) => this.setState({activeTab: key})}
+          items={items}
+        />
+      </div>
     );
   }
 }

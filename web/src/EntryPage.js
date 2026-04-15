@@ -47,6 +47,10 @@ class EntryPage extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.maybeFetchBing();
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.application !== this.state.application) {
       this.maybeFetchBing();
@@ -55,10 +59,7 @@ class EntryPage extends React.Component {
 
   maybeFetchBing = () => {
     const app = this.state.application;
-    if (!app || !app.useBingBackground) {
-      return;
-    }
-    if (app.formBackgroundUrl || app.formBackgroundUrlMobile) {
+    if (app && (app.formBackgroundUrl || app.formBackgroundUrlMobile)) {
       return;
     }
     if (this.state.bingBgUrl) {
