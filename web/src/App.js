@@ -572,7 +572,8 @@ class App extends Component {
       window.location.pathname.startsWith("/buy-plan") ||
       window.location.pathname.startsWith("/qrcode") ||
       window.location.pathname.startsWith("/consent") ||
-      window.location.pathname.startsWith("/captcha");
+      window.location.pathname.startsWith("/captcha") ||
+      window.location.pathname.startsWith("/select-system");
   }
 
   onClick = ({key}) => {
@@ -631,6 +632,7 @@ class App extends Component {
                   this.isEntryPages() ?
                     <EntryPage
                       account={this.state.account}
+                      accessToken={this.state.accessToken}
                       theme={this.state.themeData}
                       themeAlgorithm={this.state.themeAlgorithm}
                       requiredEnableMfa={this.state.requiredEnableMfa}
