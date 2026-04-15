@@ -7,7 +7,7 @@ RUN yarn install --frozen-lockfile --network-timeout 1000000
 
 # Copy source files and build
 COPY ./web .
-RUN CI=false NODE_OPTIONS="--max-old-space-size=4096" yarn run build
+RUN CI=false DISABLE_ESLINT_PLUGIN=true NODE_OPTIONS="--max-old-space-size=4096" yarn run build
 
 FROM --platform=$BUILDPLATFORM golang:1.25.8 AS BACK
 WORKDIR /go/src/casdoor
