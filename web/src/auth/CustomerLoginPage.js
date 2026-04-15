@@ -8,7 +8,7 @@
 
 import React from "react";
 import {Button, Form, Input, message} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons";
+import {UserOutlined} from "@ant-design/icons";
 import i18next from "i18next";
 
 class CustomerLoginPage extends React.Component {
@@ -28,12 +28,6 @@ class CustomerLoginPage extends React.Component {
           rules={[{required: true, message: i18next.t("login:Please input your customer ID!")}]}
         >
           <Input prefix={<UserOutlined />} placeholder={i18next.t("login:Customer ID")} />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{required: true, message: i18next.t("login:Please input your password!")}]}
-        >
-          <Input.Password prefix={<LockOutlined />} placeholder={i18next.t("login:Password")} />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" style={{width: "100%"}}>
