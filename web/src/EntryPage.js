@@ -55,9 +55,15 @@ class EntryPage extends React.Component {
 
   maybeFetchBing = () => {
     const app = this.state.application;
-    if (!app || !app.useBingBackground) return;
-    if (app.formBackgroundUrl || app.formBackgroundUrlMobile) return;
-    if (this.state.bingBgUrl) return;
+    if (!app || !app.useBingBackground) {
+      return;
+    }
+    if (app.formBackgroundUrl || app.formBackgroundUrlMobile) {
+      return;
+    }
+    if (this.state.bingBgUrl) {
+      return;
+    }
     fetch("/api/public/bing-background")
       .then(r => r.json())
       .then(d => {
@@ -65,7 +71,9 @@ class EntryPage extends React.Component {
           this.setState({bingBgUrl: d.imageUrl});
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        // silent fallback to gray background
+      });
   };
 
   resolveBgUrl() {
