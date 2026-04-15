@@ -42,14 +42,38 @@ class SelfLoginPage extends React.Component {
       },
     ];
 
+    const wrapperStyle = {
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "24px",
+    };
+
+    const cardStyle = {
+      width: "100%",
+      maxWidth: "440px",
+      padding: "36px 40px 28px",
+      background: "rgba(255, 255, 255, 0.18)",
+      backdropFilter: "blur(18px) saturate(140%)",
+      WebkitBackdropFilter: "blur(18px) saturate(140%)",
+      border: "1px solid rgba(255, 255, 255, 0.35)",
+      borderRadius: "16px",
+      boxShadow: "0 12px 40px rgba(0, 0, 0, 0.35)",
+      color: "#fff",
+    };
+
     return (
-      <div style={{maxWidth: "480px", margin: "0 auto", padding: "24px"}}>
-        <Tabs
-          centered
-          activeKey={this.state.activeTab}
-          onChange={(key) => this.setState({activeTab: key})}
-          items={items}
-        />
+      <div style={wrapperStyle}>
+        <div style={cardStyle} className="selfLoginCard">
+          <Tabs
+            centered
+            size="large"
+            activeKey={this.state.activeTab}
+            onChange={(key) => this.setState({activeTab: key})}
+            items={items}
+          />
+        </div>
       </div>
     );
   }
