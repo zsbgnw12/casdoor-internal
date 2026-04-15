@@ -20,7 +20,7 @@ RUN go mod download
 COPY . .
 
 RUN go test -v -run TestGetVersionInfo ./util/system_test.go ./util/system.go ./util/variable.go
-RUN ./build.sh
+RUN sh ./build.sh
 
 FROM alpine:latest AS STANDARD
 LABEL MAINTAINER="https://casdoor.org/"
