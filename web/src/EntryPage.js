@@ -78,7 +78,9 @@ class EntryPage extends React.Component {
 
   resolveBgUrl() {
     const app = this.state.application;
-    if (Setting.inIframe()) return null;
+    if (Setting.inIframe()) {
+      return null;
+    }
     const isMobile = Setting.isMobile();
     const explicit = isMobile ? app?.formBackgroundUrlMobile : app?.formBackgroundUrl;
     return explicit || this.state.bingBgUrl || null;
