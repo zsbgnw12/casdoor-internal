@@ -63,9 +63,20 @@ class SelfLoginPage extends React.Component {
       color: "#fff",
     };
 
+    const brandStyle = {
+      textAlign: "center",
+      marginBottom: "20px",
+      color: "#fff",
+      fontSize: "26px",
+      fontWeight: 700,
+      letterSpacing: "4px",
+      textShadow: "0 2px 8px rgba(0,0,0,0.45)",
+    };
+
     return (
       <div style={wrapperStyle}>
         <div style={cardStyle} className="selfLoginCard">
+          <div style={brandStyle}>认证中心</div>
           <Tabs
             centered
             size="large"

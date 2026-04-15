@@ -83,11 +83,12 @@ export function getAlgorithmNames(themeData) {
 }
 
 export function getLogo(themes) {
-  if (themes.includes("dark")) {
-    return `${StaticBaseUrl}/img/casdoor-logo_1185x256_dark.png`;
-  } else {
-    return `${StaticBaseUrl}/img/casdoor-logo_1185x256.png`;
-  }
+  const dark = themes.includes("dark");
+  const fill = dark ? "#ffffff" : "#1f1f1f";
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 56'>
+    <text x='0' y='40' font-family='PingFang SC, Microsoft YaHei, Arial, sans-serif' font-size='36' font-weight='700' fill='${fill}'>认证中心</text>
+  </svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
 export const OtherProviderInfo = {
@@ -2035,7 +2036,7 @@ export function getUserCommonFields() {
 }
 
 export function getDefaultFooterContent() {
-  return `Powered by <a target="_blank" href="https://casdoor.org" rel="noreferrer"><img style="padding-bottom: 3px" height="20" alt="Casdoor" src="${StaticBaseUrl}/img/casdoor-logo_1185x256.png"/></a>`;
+  return `© 认证中心`;
 }
 
 export function getEmptyFooterContent() {
