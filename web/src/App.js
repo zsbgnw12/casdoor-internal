@@ -590,8 +590,11 @@ class App extends Component {
     window.google?.accounts?.id?.cancel();
     if (redirectUrl) {
       localStorage.setItem("mfaRedirectUrl", redirectUrl);
+      this.getAccount();
+    } else {
+      // 自登录：硬跳转让浏览器在新页面加载时带上刚设的 session cookie
+      window.location.href = "/select-system";
     }
-    this.getAccount();
   }
 
   renderPage() {
