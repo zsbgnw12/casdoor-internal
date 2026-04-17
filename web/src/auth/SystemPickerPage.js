@@ -23,7 +23,7 @@ import * as AuthBackend from "./AuthBackend";
 const SYSTEMS = [
   {key: "cloud", name: "云管理平台", url: "https://orange-wave-09002e800.7.azurestaticapps.net/", icon: CloudOutlined, color: "#1677ff"},
   {key: "ticket", name: "工单系统", url: "https://kind-forest-0138c3300.6.azurestaticapps.net/", icon: ApiOutlined, color: "#13c2c2"},
-  {key: "ai", name: "AI 大脑", url: "https://socp-test.victorioussand-69befc84.southeastasia.azurecontainerapps.io/", icon: RobotOutlined, color: "#722ed1"},
+  {key: "ai", name: "AI 超级运营中心", url: "https://57.158.101.18/login", icon: RobotOutlined, color: "#722ed1"},
   {key: "sales", name: "销售系统", url: "https://purple-rock-072562e00.7.azurestaticapps.net/login", icon: ShoppingOutlined, color: "#eb2f96"},
   {key: "auth", name: "统一认证后台", url: "/", icon: SafetyCertificateOutlined, color: "#52c41a"},
 ];
