@@ -16,7 +16,7 @@ import {
   SafetyCertificateOutlined,
   ShoppingOutlined,
 } from "@ant-design/icons";
-import {Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import i18next from "i18next";
 import * as AuthBackend from "./AuthBackend";
 
@@ -59,8 +59,10 @@ class SystemPickerPage extends React.Component {
   };
 
   render() {
+    // 未登录的场景已由 EntryPage.renderLoginIfNotLoggedIn 兜住；这里只需静默占位，
+    // 避免 account 瞬时为 null 时抢先触发跳转，破坏 App.getAccount 的重试窗口。
     if (!this.props.account) {
-      return <Redirect to="/login" />;
+      return null;
     }
 
     const wrapperStyle = {
