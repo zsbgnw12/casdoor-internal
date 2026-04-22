@@ -23,7 +23,6 @@ import * as Conf from "./Conf";
 import SignupPage from "./auth/SignupPage";
 import SelfLoginPage from "./auth/SelfLoginPage";
 import LoginPage from "./auth/LoginPage";
-import SystemPickerPage from "./auth/SystemPickerPage";
 import SelfForgetPage from "./auth/SelfForgetPage";
 import ForgetPage from "./auth/ForgetPage";
 import PromptPage from "./auth/PromptPage";
@@ -90,11 +89,7 @@ class EntryPage extends React.Component {
 
   renderHomeIfLoggedIn(component) {
     if (this.props.account !== null && this.props.account !== undefined) {
-      if (window.location.pathname !== "/select-system") {
-        window.location.href = "/select-system";
-        return null;
-      }
-      return component;
+      return <Redirect to={{pathname: "/", state: {from: "/login"}}} />;
     } else {
       return component;
     }
@@ -185,7 +180,6 @@ class EntryPage extends React.Component {
             <Route exact path="/buy-plan/:owner/:pricingName/result" render={(props) => <PaymentResultPage {...this.props} pricing={this.state.pricing} onUpdatePricing={onUpdatePricing} {...props} />} />
             <Route exact path="/qrcode/:owner/:paymentName" render={(props) => <QrCodePage {...this.props} onUpdateApplication={onUpdateApplication} {...props} />} />
             <Route exact path="/captcha" render={(props) => <CaptchaPage {...props} />} />
-            <Route exact path="/select-system" render={(props) => this.renderLoginIfNotLoggedIn(<SystemPickerPage {...this.props} account={this.props.account} accessToken={this.props.accessToken} onUpdateAccount={this.props.onUpdateAccount} {...props} />)} />
           </Switch>
         </div>
 

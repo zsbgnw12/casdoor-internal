@@ -429,7 +429,7 @@ class App extends Component {
       });
   }
 
-  getAccount(retryCount = 0) {
+  getAccount() {
     const params = new URLSearchParams(this.props.location.search);
 
     let query = this.getAccessTokenParam(params);
@@ -472,20 +472,10 @@ class App extends Component {
           this.setTheme(Setting.getThemeData(account.organization), Conf.InitThemeAlgorithm);
           setTourLogo(account.organization.logo);
           setOrgIsTourVisible(account.organization.enableTour);
-          sessionStorage.removeItem("justLoggedIn");
         } else {
-          // 刚登录成功硬跳过来时，若后端返回「请先登录」可能是多副本 session 未同步，
-          // 给最多 3 次延迟重试机会再放弃（总 ~1.5s 窗口）
-          const justLoggedInAt = Number(sessionStorage.getItem("justLoggedIn") || 0);
-          const withinLoginWindow = justLoggedInAt && Date.now() - justLoggedInAt < 10000;
-          if (res.data === "Please login first" && withinLoginWindow && retryCount < 3) {
-            setTimeout(() => this.getAccount(retryCount + 1), 500);
-            return;
-          }
           if (res.data !== "Please login first") {
             Setting.showMessage("error", `${i18next.t("application:Failed to sign in")}: ${res.msg}`);
           }
-          sessionStorage.removeItem("justLoggedIn");
         }
 
         this.setState({
@@ -582,8 +572,7 @@ class App extends Component {
       window.location.pathname.startsWith("/buy-plan") ||
       window.location.pathname.startsWith("/qrcode") ||
       window.location.pathname.startsWith("/consent") ||
-      window.location.pathname.startsWith("/captcha") ||
-      window.location.pathname.startsWith("/select-system");
+      window.location.pathname.startsWith("/captcha");
   }
 
   onClick = ({key}) => {
@@ -600,13 +589,8 @@ class App extends Component {
     window.google?.accounts?.id?.cancel();
     if (redirectUrl) {
       localStorage.setItem("mfaRedirectUrl", redirectUrl);
-      this.getAccount();
-    } else {
-      // 自登录：硬跳转让浏览器在新页面加载时带上刚设的 session cookie；
-      // 标记时间戳，让目标页 getAccount 若遇到多副本 session 未同步能短暂重试
-      sessionStorage.setItem("justLoggedIn", String(Date.now()));
-      window.location.href = "/select-system";
     }
+    this.getAccount();
   }
 
   renderPage() {
